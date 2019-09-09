@@ -1,7 +1,7 @@
 ﻿----
 layout: 乔巴的博客  
 title:  "Java中常见的Exception和Error"
-  date:   2019-09-9 19:50:36 +0530  
+  date:   2019-09-09 19:50:36 +0530  
 categories: Java中常见的Exception和Error  
 ----在Java开发中，我们难免会遇到各种各样的异常（Exception），继承于Throwable的Exception作为所有异常的父类，在jdk中（包java.lang下）有两个非常重要的子类，分别是流异常IOException和运行异常RuntimeException。  
 **一、Exception**   
@@ -16,9 +16,9 @@ Exception(String message, Throwable cause, boolean enableSuppression, boolean wr
 下面是一些常见的运行异常。  
 1.NullPointException：空指针异常不用多说了，没有踩过这个坑的程序员基本不存在。  
 2.IllegalArgumentException：非法参数异常，说明传入的参数违反了一个方法要求的某些特性。比如SimpleDateFormat创建时y、m、d都有特殊意义，如果传入一个r就会报这个错误。  
-3. ArrayIndexOutOfBoundsException：数组下标越界，这个也是很常见的异常，特别是在循环处理一个List的时候，粗心的同学可能会把下标值赋值成了List的长度，此时就会出现该异常。  
-4. ArithmeticException：数学计算异常，这也是我最近第一次遇到的异常，在做除法的时候没有判断分母为0的情况。  
-5. ClassNotFoundException：找不到指定的类，一般情况java编译时会帮忙避免该问题，但利用到java的反射机制时就不会及时发现了，比如在使用MyBatis的时候，mapper映射文件路径写错等。  
+3.ArrayIndexOutOfBoundsException：数组下标越界，这个也是很常见的异常，特别是在循环处理一个List的时候，粗心的同学可能会把下标值赋值成了List的长度，此时就会出现该异常。  
+4.ArithmeticException：数学计算异常，这也是我最近第一次遇到的异常，在做除法的时候没有判断分母为0的情况。  
+5.ClassNotFoundException：找不到指定的类，一般情况java编译时会帮忙避免该问题，但利用到java的反射机制时就不会及时发现了，比如在使用MyBatis的时候，mapper映射文件路径写错等。  
 6.FileNotFoundException：与上面的类似，找不到指定的文件，这时候需要检查文件路径是否正确。  
 7.NumberFormatException：字符串转换为数字异常，这也是我最近遇到的异常，字符串出现了非数字，这时用Integer的parseInt方法会出现该异常。  
 8.NegativeArrayException：Negative是负数的意思，这是数组负下标异常（比如int[] i = new int[-1]），笔者暂时没有遇到过。  
