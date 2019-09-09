@@ -1,9 +1,9 @@
-﻿---
-layout: 乔巴的博客
+﻿----
+layout: 乔巴的博客  
 title:  "Java中常见的Exception和Error"
-date:   2019-09-9 19:50:36 +0530
-categories: Java中常见的Exception和Error
----在Java开发中，我们难免会遇到各种各样的异常（Exception），继承于Throwable的Exception作为所有异常的父类，在jdk中（包java.lang下）有两个非常重要的子类，分别是流异常IOException和运行异常RuntimeException。  
+  date:   2019-09-9 19:50:36 +0530  
+categories: Java中常见的Exception和Error  
+----在Java开发中，我们难免会遇到各种各样的异常（Exception），继承于Throwable的Exception作为所有异常的父类，在jdk中（包java.lang下）有两个非常重要的子类，分别是流异常IOException和运行异常RuntimeException。  
 **一、Exception**   
     Exception类有5个构造方法，包括  
 Exception() 、  
