@@ -3,14 +3,14 @@
 标题: Java中常见的Exception和Error    
 写在前面：本文有助于开发和测试在查看日志时给问题定位或定向，希望能帮到各位更快找到问题。  
 **一、Exception**     
-&emsp;&emsp;在Java开发中，我们难免会遇到各种各样的异常（Exception），继承于Throwable的Exception作为所有异常的父类，在jdk中（包java.lang下）有两个非常重要的子类，分别是流异常IOException和运行异常RuntimeException。   
+&emsp;&emsp;在Java开发中，我们难免会遇到各种各样的异常（Exception），继承于Throwable的Exception作为所有异常的父类，在jdk中（包java.lang下）有两个非常重要的子类，分别是流异常IOException和运行异常RuntimeException，当然还包括别的子类，如ReflectiveOperationException、SQLException等。   
     Exception类有5个构造方法，包括  
 Exception() 、  
 Exception(String message)、  
 Exception(String message, Throwable cause)、  
 Exception(Throwable cause)、  
 Exception(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace)，  
-其实所有的构造方法都是通过调用父类相应方法实现的。  
+其实所有的构造方法都是通过调用父类相应方法实现的,创建后可以通过getMessage()和getCause()获取对象信息，而最后一个构造方法是java7开始提供的，第三个参数表示是否初始化需要记录的异常（记录的异常是一个List类型，参数名是suppressedExceptions，可以通过addSuppressed方法添加），第四个参数表示是否初始化栈帧信息。  
     RuntimeException类及其子类在我们开发中最常见也是可以通过代码规避的，而Throwable的另一个子类Error就无法通过代码处理了。如果我们不希望代码报错可以通过try-catch保护起来。  
 下面是一些常见的运行异常。  
 1.NullPointerException：空指针异常不用多说了，没有踩过这个坑的程序员基本不存在。往往发生的情况是一个为null的对象作为另一个方法的入参导致，编程人员需要时刻提醒自己考虑该情况做相应check。  
