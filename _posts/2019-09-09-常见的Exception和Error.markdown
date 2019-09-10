@@ -15,15 +15,15 @@ Exception(String message, Throwable cause, boolean enableSuppression, boolean wr
 下面是一些常见的运行异常。  
 1.NullPointerException：空指针异常不用多说了，没有踩过这个坑的程序员基本不存在。往往发生的情况是一个为null的对象作为另一个方法的入参导致，编程人员需要时刻提醒自己考虑该情况做相应check。  
 2.IllegalArgumentException：非法参数异常，说明传入的参数违反了一个方法要求的某些特性。比如SimpleDateFormat创建时y、m、d都有特殊意义，如果传入一个r就会报这个错误。  
-3.ArrayIndexOutOfBoundsException：数组下标越界，这个也是很常见的异常，特别是在循环处理一个List的时候，粗心的同学可能会把下标值赋值成了List的长度，此时就会出现该异常。  
+3.ArrayIndexOutOfBoundsException：数组下标越界,IndexOutOfBoundsException的子类，这个也是很常见的异常，特别是在循环处理一个List的时候，粗心的同学可能会把下标值赋值成了List的长度，此时就会出现该异常。  
 4.ArithmeticException：数学计算异常，这也是我最近第一次遇到的异常，在做除法的时候没有判断分母为0的情况。  
-5.ClassNotFoundException：找不到指定的类，一般情况java编译时会帮忙避免该问题，但利用到java的反射机制时就不会及时发现了，比如在使用MyBatis的时候，mapper映射文件路径写错等。  
-6.FileNotFoundException：与上面的类似，找不到指定的文件，这时候需要检查文件路径是否正确。  
-7.NumberFormatException：字符串转换为数字异常，这也是我最近遇到的异常，字符串出现了非数字，这时用Integer的parseInt方法会出现该异常，测试同学截图给我一看日志中打印了for input string: "授权商户不一致"，这就表示字符串"授权商户不一致"无法转为数字，该字符串是第三方的返回值，原因就是对异常情况欠考虑。  
-8.NegativeArrayException：Negative是负数的意思，这是数组负下标异常（比如int[] i = new int[-1]），笔者暂时没有遇到过。  
-9.NoSuchMethodException：未找到指定的方法异常，同5，一般会出现在反射机制运用中。  
-10.IllegalAccessException：没有访问权限，比如要调用一个没有访问权限的类时会出现该异常，本人最近通过反射调用一个类的变量时出现过该异常，然后通过调用setAccessible(true)方法纠正了问题。  
-11.SQLException：数据库异常，常见的有无效列名、表或视图不存在、缺少表达式、不能插入空值、sql命令未正确结束等。请检查sql。  
+5.ClassNotFoundException：找不到指定的类，ReflectiveOperationException的子类（ReflectiveOperationException类直接继承于Exception类），一般情况java编译时会帮忙避免该问题，但利用到java的反射机制时就不会及时发现了，比如在使用MyBatis的时候，mapper映射文件路径写错等。  
+6.FileNotFoundException：与上面的类似，找不到指定的文件，继承于IOException，出现时需要检查文件路径是否正确。  
+7.NumberFormatException：字符串转换为数字异常，IllegalArgumentException的子类，这也是我最近遇到的异常，字符串出现了非数字，这时用Integer的parseInt方法会出现该异常，测试同学截图给我一看日志中打印了for input string: "授权商户不一致"，这就表示字符串"授权商户不一致"无法转为数字，该字符串是第三方的返回值，原因就是对异常情况欠考虑。  
+8.NegativeArraySizeException：Negative是负数的意思，如果试图创建大小为负数的数组会出现该异常（比如int[] i = new int[-1]）。  
+9.NoSuchMethodException：未找到指定的方法异常，同5，ReflectiveOperationException的子类，一般会出现在反射机制运用中。  
+10.IllegalAccessException：没有访问权限，ReflectiveOperationException的子类，比如要调用一个没有访问权限的类时会出现该异常，本人最近通过反射调用一个类的变量时出现过该异常，然后通过调用setAccessible(true)方法纠正了问题。  
+11.SQLException：数据库异常，直接继承于Exception类，常见的有无效列名、表或视图不存在、缺少表达式、不能插入空值、sql命令未正确结束等。请检查sql。  
 12.ClassCastException：类型强制转换异常，比如Json字符串转为相应的类时粗心工具类中少了个字段就会出现该异常。  
 13.UnsupportedOperationException：不支持的方法异常，笔者暂时没有遇到过。      
 **二、Error**   
