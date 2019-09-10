@@ -11,8 +11,8 @@ Exception(String message, Throwable cause)、
 Exception(Throwable cause)、  
 Exception(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace)，  
 其实所有的构造方法都是通过调用父类相应方法实现的,创建后可以通过getMessage()和getCause()获取对象信息，而最后一个构造方法是java7开始提供的，第三个参数表示是否初始化需要记录的异常（记录的异常是一个List类型，参数名是suppressedExceptions，可以通过addSuppressed方法添加），第四个参数表示是否初始化栈帧信息。  
-    RuntimeException类及其子类在我们开发中最常见也是可以通过代码规避的，而Throwable的另一个子类Error就无法通过代码处理了。如果我们不希望代码报错可以通过try-catch保护起来。  
-下面是一些常见的运行异常。  
+    Exception类及其子类在我们开发中最常见也是可以通过代码规避的，而Throwable的另一个子类Error就无法通过代码处理了。如果我们不希望代码报错可以通过try-catch保护起来。  
+下面是一些常见的异常:  
 1.NullPointerException：空指针异常不用多说了，没有踩过这个坑的程序员基本不存在。往往发生的情况是一个为null的对象作为另一个方法的入参导致，编程人员需要时刻提醒自己考虑该情况做相应check。  
 2.IllegalArgumentException：非法参数异常，说明传入的参数违反了一个方法要求的某些特性。比如SimpleDateFormat创建时y、m、d都有特殊意义，如果传入一个r就会报这个错误。  
 3.ArrayIndexOutOfBoundsException：数组下标越界,IndexOutOfBoundsException的子类，这个也是很常见的异常，特别是在循环处理一个List的时候，粗心的同学可能会把下标值赋值成了List的长度，此时就会出现该异常。  
@@ -34,7 +34,7 @@ Error(String message, Throwable cause)、
 Error(Throwable cause)、  
 Error(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace)，  
 同样所有的构造方法都是通过调用父类相应方法实现的。  
-下面是常见的错误：   
+下面是一些相对常见的错误：   
 1.AssertionError 断言错误，用来指示一个断言失败的情况,比如调用了一个未经初始化的对象或者不存在的对象。   
 2.ClassCircularityError 类循环依赖错误，LinkageError的子类。在初始化一个类时，若检测到类之间循环依赖则抛出该异常，一般是类与类之间的继承关系不对导致的错误。   
 3.ClassFormatError 类格式错误，LinkageError的子类。当Java虚拟机试图从一个文件中读取Java类，而检测到该文件的内容不符合类的有效格式时抛出，往往由于jdk版本不匹配导致。   
