@@ -35,14 +35,14 @@ Error(Throwable cause)、
 Error(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace)，  
 同样所有的构造方法都是通过调用父类相应方法实现的。  
 下面是常见的错误：   
-1.AssertionError 断言错。用来指示一个断言失败的情况。   
-2.ClassCircularityError 类循环依赖错误，LinkageError的子类。在初始化一个类时，若检测到类之间循环依赖则抛出该异常。   
-3.ClassFormatError 类格式错误，LinkageError的子类。当Java虚拟机试图从一个文件中读取Java类，而检测到该文件的内容不符合类的有效格式时抛出。   
-4.ExceptionInInitializerError 初始化程序错误，LinkageError的子类。当执行一个类的静态初始化程序的过程中，发生了异常时抛出。静态初始化程序是指直接包含于类中的static语句段。  
-5.IllegalAccessError 违法访问错误，LinkageError的子类IncompatibleClassChangeError的子类。当一个应用试图访问、修改某个类的域（Field）或者调用其方法，但是又违反域或方法的可见性声明，则抛出该异常。  
-6.IncompatibleClassChangeError 不兼容的类变化错误，LinkageError的子类。当正在执行的方法所依赖的类定义发生了不兼容的改变时，抛出该异常。一般在修改了应用中的某些类的声明定义而没有对整个应用重新编译而直接运行的情况下，容易引发该错误。   
-7.InstantiationError 实例化错误， LinkageError的子类IncompatibleClassChangeError的子类。当一个应用试图通过Java的new操作符构造一个抽象类或者接口时抛出该异常.   
-8.InternalError 内部错误，是VirtualMachineError的子类。用于指示Java虚拟机发生了内部错误。   
+1.AssertionError 断言错误，用来指示一个断言失败的情况,比如调用了一个未经初始化的对象或者不存在的对象。   
+2.ClassCircularityError 类循环依赖错误，LinkageError的子类。在初始化一个类时，若检测到类之间循环依赖则抛出该异常，一般是类与类之间的继承关系不对导致的错误。   
+3.ClassFormatError 类格式错误，LinkageError的子类。当Java虚拟机试图从一个文件中读取Java类，而检测到该文件的内容不符合类的有效格式时抛出，往往由于jdk版本不匹配导致。   
+4.ExceptionInInitializerError 初始化程序错误，LinkageError的子类。当执行一个类的静态初始化程序的过程中，发生了异常时抛出。静态初始化程序是指直接包含于类中的static语句段，请检查自己使用的静态变量是否已初始化，往往由于初始化顺序不对导致。  
+5.IllegalAccessError 违法访问错误，LinkageError的子类IncompatibleClassChangeError的子类。当一个应用试图访问、修改某个类的域（Field）或者调用其方法，但是又违反域或方法的可见性声明，则抛出该异常，本人最近通过反射调用一个类的变量时出现过该错误，然后通过调用setAccessible(true)方法纠正了错误。  
+6.IncompatibleClassChangeError 不兼容的类变化错误，LinkageError的子类。当正在执行的方法所依赖的类定义发生了不兼容的改变时，抛出该异常。一般在修改了应用中的某些类的声明定义而没有对整个应用重新编译而直接运行的情况下，容易引发该错误，也可能是两个依赖包的版本号不兼容导致的错误。   
+7.InstantiationError 实例化错误， LinkageError的子类IncompatibleClassChangeError的子类。当一个应用试图通过Java的new操作符构造一个抽象类或者接口时抛出该异常。   
+8.InternalError 内部错误，VirtualMachineError的子类。用于指示Java虚拟机发生了内部错误。   
 9.LinkageError 链接错误。该错误及其所有子类指示某个类依赖于另外一些类，在该类编译之后，被依赖的类改变了其类定义而没有重新编译所有的类，进而引发错误的情况。  
 10.NoClassDefFoundError 未找到类定义错误，LinkageError的子类。当Java虚拟机或者类装载器试图实例化某个类，而找不到该类的定义时抛出该错误。  
 11.NoSuchFieldError 域不存在错误， LinkageError的子类IncompatibleClassChangeError的子类。当应用试图访问或者修改某类的某个域，而该类的定义中没有该域的定义时抛出该错误。  
