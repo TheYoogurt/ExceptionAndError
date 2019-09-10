@@ -13,7 +13,7 @@ Exception(String message, Throwable cause, boolean enableSuppression, boolean wr
 其实所有的构造方法都是通过调用父类相应方法实现的。  
     RuntimeException类及其子类在我们开发中最常见也是可以通过代码规避的，而Throwable的另一个子类Error就无法通过代码处理了。如果我们不希望代码报错可以通过try-catch保护起来。  
 下面是一些常见的运行异常。  
-1.NullPointException：空指针异常不用多说了，没有踩过这个坑的程序员基本不存在。往往发生的情况是一个为null的对象作为另一个方法的入参导致，编程人员需要时刻提醒自己考虑该情况做相应check。  
+1.NullPointerException：空指针异常不用多说了，没有踩过这个坑的程序员基本不存在。往往发生的情况是一个为null的对象作为另一个方法的入参导致，编程人员需要时刻提醒自己考虑该情况做相应check。  
 2.IllegalArgumentException：非法参数异常，说明传入的参数违反了一个方法要求的某些特性。比如SimpleDateFormat创建时y、m、d都有特殊意义，如果传入一个r就会报这个错误。  
 3.ArrayIndexOutOfBoundsException：数组下标越界，这个也是很常见的异常，特别是在循环处理一个List的时候，粗心的同学可能会把下标值赋值成了List的长度，此时就会出现该异常。  
 4.ArithmeticException：数学计算异常，这也是我最近第一次遇到的异常，在做除法的时候没有判断分母为0的情况。  
